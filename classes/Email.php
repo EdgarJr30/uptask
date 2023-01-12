@@ -32,7 +32,7 @@ class Email {
         $mail->addAddress('cuentas@uptask.com', 'UpTask.com');
         $mail->Subject = 'Confirma tu Cuenta';
 
-        //Set HTML
+        //Set HTMLL
         $mail->isHTML(TRUE);
         $mail->CharSet = 'UTF-8';
 
