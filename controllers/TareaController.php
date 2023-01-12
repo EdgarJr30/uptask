@@ -40,8 +40,6 @@ class TareaController {
                     'mensaje' => 'Hubo un error al agregar la tarea'
                 ];
                 echo json_encode($respuesta);
-                echo json_last_error_msg(); // Print out the error if any
-                die(); // halt the script
                 return;
             }
 
@@ -56,8 +54,6 @@ class TareaController {
                 'proyectoId' => $proyecto->id
             ];
             echo json_encode($respuesta);
-            echo json_last_error_msg(); // Print out the error if any
-            die(); // halt the script
         }
     }
 
@@ -76,8 +72,6 @@ class TareaController {
                     'mensaje' => 'Hubo un error al actualizar la tarea'
                 ];
                 echo json_encode($respuesta);
-                echo json_last_error_msg(); // Print out the error if any
-                die(); // halt the script
                 return;
             }
 
@@ -93,8 +87,6 @@ class TareaController {
                     'mensaje' => 'Actualizado Correctamente'
                 ];
                 echo json_encode(['respuesta' => $respuesta]);
-                echo json_last_error_msg(); // Print out the error if any
-                die(); // halt the script
             }
         }
     }
@@ -114,8 +106,6 @@ class TareaController {
                     'mensaje' => 'Hubo un error al actualizar la tarea'
                 ];
                 echo json_encode($respuesta);
-                echo json_last_error_msg(); // Print out the error if any
-                die(); // halt the script
                 return;
             }
 
@@ -130,8 +120,6 @@ class TareaController {
 
 
             echo json_encode($resultado);
-            echo json_last_error_msg(); // Print out the error if any
-            die(); // halt the script
         }
     }
 }
