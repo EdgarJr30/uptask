@@ -95,8 +95,8 @@ class ActiveRecord {
         $query .= " ') ";
 
         //Para obtener y probar la consulta SQL
-        echo json_encode(['sql' => $query]);
-        return;
+        // echo json_encode(['sql' => $query]);
+        // return;
 
         // Resultado de la consulta
         $resultado = self::$db->query($query);
