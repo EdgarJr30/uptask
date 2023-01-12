@@ -20,7 +20,9 @@ class TareaController {
         if (!$proyecto || $proyecto->propietarioid !== $_SESSION['id']) header('Location: /404');
         $tareas = Tarea::belongsTo('proyectoId', $proyecto->id);
 
-        echo json_encode(['tareas' => $tareas], JSON_UNESCAPED_UNICODE);
+        echo json_encode(['tareas' => $tareas]);
+        echo json_last_error_msg(); // Print out the error if any
+        die(); // halt the script
     }
 
     public static function crear() {
@@ -39,7 +41,9 @@ class TareaController {
                     'tipo' => 'error',
                     'mensaje' => 'Hubo un error al agregar la tarea'
                 ];
-                echo json_encode($respuesta), JSON_UNESCAPED_UNICODE;
+                echo json_encode($respuesta);
+                echo json_last_error_msg(); // Print out the error if any
+                die(); // halt the script
                 return;
             }
 
@@ -53,7 +57,9 @@ class TareaController {
                 'mensaje' => 'Tarea Creada Correctamente',
                 'proyectoId' => $proyecto->id
             ];
-            echo json_encode($respuesta), JSON_UNESCAPED_UNICODE;
+            echo json_encode($respuesta);
+            echo json_last_error_msg(); // Print out the error if any
+            die(); // halt the script
         }
     }
 
@@ -71,7 +77,9 @@ class TareaController {
                     'tipo' => 'error',
                     'mensaje' => 'Hubo un error al actualizar la tarea'
                 ];
-                echo json_encode($respuesta), JSON_UNESCAPED_UNICODE;
+                echo json_encode($respuesta);
+                echo json_last_error_msg(); // Print out the error if any
+                die(); // halt the script
                 return;
             }
 
@@ -86,7 +94,9 @@ class TareaController {
                     'proyectoId' => $proyecto->id,
                     'mensaje' => 'Actualizado Correctamente'
                 ];
-                echo json_encode(['respuesta' => $respuesta], JSON_UNESCAPED_UNICODE);
+                echo json_encode(['respuesta' => $respuesta]);
+                echo json_last_error_msg(); // Print out the error if any
+                die(); // halt the script
             }
         }
     }
@@ -105,7 +115,9 @@ class TareaController {
                     'tipo' => 'error',
                     'mensaje' => 'Hubo un error al actualizar la tarea'
                 ];
-                echo json_encode($respuesta), JSON_UNESCAPED_UNICODE;
+                echo json_encode($respuesta);
+                echo json_last_error_msg(); // Print out the error if any
+                die(); // halt the script
                 return;
             }
 
@@ -119,7 +131,9 @@ class TareaController {
             ];
 
 
-            echo json_encode($resultado), JSON_UNESCAPED_UNICODE;
+            echo json_encode($resultado);
+            echo json_last_error_msg(); // Print out the error if any
+            die(); // halt the script
         }
     }
 }
