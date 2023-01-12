@@ -21,8 +21,6 @@ class TareaController {
         $tareas = Tarea::belongsTo('proyectoId', $proyecto->id);
 
         echo json_encode(['tareas' => $tareas]);
-        echo json_last_error_msg(); // Print out the error if any
-        die(); // halt the script
     }
 
     public static function crear() {
