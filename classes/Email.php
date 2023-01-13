@@ -30,8 +30,8 @@ class Email {
 
         $mail->SMTPSecure = 'tls';
 
-        $mail->setFrom('admin@bienesraices.com');
-        $mail->addAddress('admin@bienesraices.com', 'UpTask.com');
+        $mail->setFrom('uptask@uptask.com');
+        $mail->addAddress('uptask@uptask.com', 'UpTask.com');
         $mail->Subject = 'Confirma tu Cuenta';
 
         //Set HTMLL
@@ -61,8 +61,8 @@ class Email {
 
         $mail->SMTPSecure = 'tls';
 
-        $mail->setFrom('admin@bienesraices.com');
-        $mail->addAddress('admin@bienesraices.com', 'UpTask.com');
+        $mail->setFrom('uptask@uptask.com');
+        $mail->addAddress('uptask@uptask.com', 'UpTask.com');
         $mail->Subject = 'Reestablece tu Password';
 
         //Set HTML
