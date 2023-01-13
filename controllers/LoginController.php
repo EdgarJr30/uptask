@@ -37,7 +37,6 @@ class LoginController {
                         //Redireccionar
                         header('Location: /dashboard');
 
-                        debuguear($_SESSION);
                     } else {
                         Usuario::setAlerta('error', 'Password Incorrecto');
                     }
@@ -194,7 +193,6 @@ class LoginController {
                 }
             }
 
-            // debuguear($usuario);
         }
 
         $alertas = Usuario::getAlertas();
@@ -240,8 +238,6 @@ class LoginController {
         }
 
         $alertas = Usuario::getAlertas();
-
-        // debuguear($usuario);
 
         //Render a la vista
         $router->render('auth/confirmar', [

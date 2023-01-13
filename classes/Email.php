@@ -3,7 +3,14 @@
 namespace Classes;
 
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+// Load Composer's autoloader
+require __DIR__ . '/../vendor/autoload.php';
+
 use Dotenv\Dotenv as Dotenv;
+
 $dotenv = Dotenv::createImmutable('../includes/.env');
 $dotenv->safeLoad();
 
@@ -22,16 +29,17 @@ class Email {
         //Crear el objeto de email
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = $_ENV['MAIL_HOST'];
+        $mail->Mailer = "smtp";
+        $mail->SMTPDebug  = 1;
         $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'ssl';
         $mail->Port = $_ENV['MAIL_PORT'];
+        $mail->Host = $_ENV['MAIL_HOST'];
         $mail->Username = $_ENV['MAIL_USER'];
         $mail->Password = $_ENV['MAIL_PASSWORD'];
 
-        $mail->SMTPSecure = 'tls';
-
-        $mail->setFrom('uptask@uptask.com');
-        $mail->addAddress('uptask@uptask.com', 'UpTask.com');
+        $mail->addAddress($_POST['email']);
+        $mail->setFrom('luigivalentino9912@gmail.com');
         $mail->Subject = 'Confirma tu Cuenta';
 
         //Set HTMLL
@@ -53,16 +61,17 @@ class Email {
         //Crear el objeto de email
         $mail = new PHPMailer();
         $mail->isSMTP();
-        $mail->Host = $_ENV['MAIL_HOST'];
+        $mail->Mailer = "smtp";
+        $mail->SMTPDebug  = 1;
         $mail->SMTPAuth = true;
+        $mail->SMTPSecure = 'ssl';
         $mail->Port = $_ENV['MAIL_PORT'];
+        $mail->Host = $_ENV['MAIL_HOST'];
         $mail->Username = $_ENV['MAIL_USER'];
         $mail->Password = $_ENV['MAIL_PASSWORD'];
 
-        $mail->SMTPSecure = 'tls';
-
-        $mail->setFrom('uptask@uptask.com');
-        $mail->addAddress('uptask@uptask.com', 'UpTask.com');
+        $mail->addAddress($_POST['email']);
+        $mail->setFrom('luigivalentino9912@gmail.com');
         $mail->Subject = 'Reestablece tu Password';
 
         //Set HTML
@@ -75,8 +84,6 @@ class Email {
         $contenido .= "<p>Si no has sido tu quien solicito este cambio, puedes ignorar el mensaje</p>";
         $contenido .= "</html>";
         $mail->Body = $contenido;
-
-        debuguear($contenido);
 
         //Enviar el email
         $mail->send();
