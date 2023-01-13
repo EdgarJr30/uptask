@@ -33,10 +33,10 @@ class Email {
         $mail->SMTPDebug  = 1;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'ssl';
-        $mail->Port = $_ENV['MAIL_PORT'];
-        $mail->Host = $_ENV['MAIL_HOST'];
-        $mail->Username = $_ENV['MAIL_USER'];
-        $mail->Password = $_ENV['MAIL_PASSWORD'];
+        $mail->Port = '465';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Username = 'luigivalentino9912@gmail.com';
+        $mail->Password = 'akdgqegicygkvpkq';
 
         $mail->addAddress($_POST['email']);
         $mail->setFrom('luigivalentino9912@gmail.com');
@@ -65,10 +65,14 @@ class Email {
         $mail->SMTPDebug  = 1;
         $mail->SMTPAuth = true;
         $mail->SMTPSecure = 'ssl';
-        $mail->Port = $_ENV['MAIL_PORT'];
-        $mail->Host = $_ENV['MAIL_HOST'];
-        $mail->Username = $_ENV['MAIL_USER'];
-        $mail->Password = $_ENV['MAIL_PASSWORD'];
+        $mail->Port = '465';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Username = 'luigivalentino9912@gmail.com';
+        $mail->Password = 'akdgqegicygkvpkq';
+        // $mail->Port = $_ENV['MAIL_PORT'];
+        // $mail->Host = $_ENV['MAIL_HOST'];
+        // $mail->Username = $_ENV['MAIL_USER'];
+        // $mail->Password = $_ENV['MAIL_PASSWORD'];
 
         $mail->addAddress($_POST['email']);
         $mail->setFrom('luigivalentino9912@gmail.com');
