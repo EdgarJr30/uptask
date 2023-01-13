@@ -13,6 +13,8 @@ class Usuario extends ActiveRecord {
     public $email;
     public $password;
     public $password2;
+    public $password_actual;
+    public $password_nuevo;
     public $token;
     public $confirmado;
 
@@ -22,12 +24,14 @@ class Usuario extends ActiveRecord {
         $this->email = $args['email'] ?? '';
         $this->password = $args['password'] ?? '';
         $this->password2 = $args['password2'] ?? '';
+        $this->password_actual = $args['password_actual'] ?? '';
+        $this->password_nuevo = $args['password_nuevo'] ?? '';
         $this->token = $args['token'] ?? '';
         $this->confirmado = $args['confirmado'] ?? 0;
     }
 
     //Validar el Login de usuarios
-    public function validarLogin() {
+    public function validarLogin(): array {
         if (!$this->email) {
             self::$alertas['error'][] = 'El Email del Usuario es Obligatorio';
         }
@@ -41,11 +45,10 @@ class Usuario extends ActiveRecord {
         }
 
         return self::$alertas;
-
     }
 
     //Validacion para cuentas nuevas
-    public function validarNuevaCuenta() {
+    public function validarNuevaCuenta(): array {
         if (!$this->nombre) {
             self::$alertas['error'][] = 'El Nombre del Usuario es Obligatorio';
         }
@@ -70,7 +73,7 @@ class Usuario extends ActiveRecord {
     }
 
     //Valida un email
-    public function validarEmail() {
+    public function validarEmail(): array {
         if (!$this->email) {
             self::$alertas['error'][] = 'El Email es Obligatorio';
         }
@@ -83,7 +86,7 @@ class Usuario extends ActiveRecord {
     }
 
     //Valida el password
-    public function validarPassword() {
+    public function validarPassword(): array {
         if (!$this->password) {
             self::$alertas['error'][] = 'El Password no puede ir vacio';
         }
@@ -95,13 +98,44 @@ class Usuario extends ActiveRecord {
         return self::$alertas;
     }
 
+    //Validar el nombre y correo
+    public function validar_perfil(): array {
+        if (!$this->nombre) {
+            self::$alertas['error'][] = 'El Nombre es obligatorio';
+        }
+        if (!$this->email) {
+            self::$alertas['error'][] = 'El Email es obligatorio';
+        }
+
+        return self::$alertas;
+    }
+
+    public function nuevo_password(): array {
+        if (!$this->password_actual) {
+            self::$alertas['error'][] = 'El Password Actual no puede ir vacio';
+        }
+        if (!$this->password_nuevo) {
+            self::$alertas['error'][] = 'El Password Nuevo no puede ir vacio';
+        }
+        if (strlen($this->password_nuevo) < 6) {
+            self::$alertas['error'][] = 'El Password debe contener al menos 6 caracteres';
+        }
+
+        return self::$alertas;
+    }
+
+    //Comprobar el password
+    public function comprobar_password(): bool {
+        return password_verify($this->password_actual, $this->password);
+    }
+
     //Hashear el password
-    public function hashPassword() {
+    public function hashPassword(): void {
         $this->password = password_hash($this->password, PASSWORD_BCRYPT);
     }
 
     //Generar un token
-    public function crearToken() {
+    public function crearToken(): void {
         //Diferentes formas de crear un token
         //Con md5 y pasandole uniqid es mas segura
         //uniqid sola es un poco mas vulnerable, para para un token de uso rapido esta bien
